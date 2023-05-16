@@ -40,10 +40,16 @@ int main() {
 	int n;
 	while (true) {
 
-		cout << "Fibonacci sequence number (0 quits): ";
+		// limit sequence number to prevent stack overflow
+		cout << "Enter a Fibonacci sequence number <= 45 (0 quits): ";
 		cin >> n;
 		if (!n) {
 			break;
+		}
+
+		if (n > 45) {
+			cout << "Too big\n";
+			continue;
 		}
 
 		cout << "\nn=" << n << " fib(n)=" << fib(n) << '\n';
