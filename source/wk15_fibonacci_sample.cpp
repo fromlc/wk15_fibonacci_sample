@@ -8,8 +8,9 @@
 //
 // Author: https://www.geeksforgeeks.org/c-program-for-n-th-fibonacci-number/
 //------------------------------------------------------------------------------
-#include <iostream>
 #include <array>
+#include <iostream>
+#include <stdexcept>
 
 //------------------------------------------------------------------------------
 // using symbols
@@ -56,7 +57,7 @@ int main() {
 	while (true) {
 
 		// limit sequence number to prevent stack overflow
-		cout << "Enter a Fibonacci sequence number <= "
+		cout << "\nEnter a Fibonacci sequence number <= "
 			<< FIBSEQ_LIMIT << " (0 quits) : ";
 		cin >> n;
 		if (!n) {
@@ -68,7 +69,32 @@ int main() {
 			continue;
 		}
 
-		cout << "\nn=" << n << " fib(n)=" << fib(n) << '\n';
+		try {
+			cout << "n=" << n << " fib(n)=" << fib(n) << '\n';
+		}
+		catch (std::overflow_error& e) {
+			cout << "\nstack overflow on n=" << n << '\n';
+			cout << e.what() << '\n';
+		}
+		catch (std::underflow_error& e) {
+			cout << "\nstack underflow on n=" << n << '\n';
+			cout << e.what() << '\n';
+		}
+		catch (std::runtime_error& e) {
+			cout << "\nruntime error on n=" << n << '\n';
+			cout << e.what() << '\n';
+		}
+		catch (std::range_error& e) {
+			cout << "\nrange error on n=" << n << '\n';
+			cout << e.what() << '\n';
+		}
+		catch (std::exception& e) {
+			cout << "\nexception on n=" << n << '\n';
+			cout << e.what() << '\n';
+		}
+		catch (...) {
+			cout << "\ncrashed on n=" << n << '\n';
+		}
 	}
 
 	cout << "\nGoodbye!\n\n";
