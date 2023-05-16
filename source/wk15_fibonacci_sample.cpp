@@ -22,20 +22,20 @@ using std::array;
 //------------------------------------------------------------------------------
 // constants
 //------------------------------------------------------------------------------
-constexpr int FIBSEQ_LIMIT = 40;
+constexpr int FIBSEQ_LIMIT = 10000;
 
 //------------------------------------------------------------------------------
 // globals
 //------------------------------------------------------------------------------
 // storage for pre-calculated Fibonacci numbers
 namespace g {
-	array<size_t, FIBSEQ_LIMIT + 1> aFib { 0 };
+	array<unsigned long long, FIBSEQ_LIMIT + 1> aFib { 0 };
 }
 
 //------------------------------------------------------------------------------
 // local function prototypes
 //------------------------------------------------------------------------------
-size_t fib(size_t n);		// recursive function
+unsigned long long fib(size_t n);		// recursive function
 
 //------------------------------------------------------------------------------
 // entry point
@@ -80,7 +80,7 @@ int main() {
 // recursive Fibonacci number calculator
 // given int n, return nth Fibonacci number
 //------------------------------------------------------------------------------
-size_t fib(size_t n) {
+unsigned long long fib(size_t n) {
 
 	if (n <= 1)
 		return n;
@@ -92,5 +92,8 @@ size_t fib(size_t n) {
 		return g::aFib[n];
 	}
 
-	return (g::aFib[n] = fib(n - 1) + fib(n - 2));
+	unsigned long long nthFib = fib(n - 1) + fib(n - 2);
+	g::aFib[n] = nthFib;
+
+	return nthFib;
 }
