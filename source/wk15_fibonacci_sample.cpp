@@ -59,8 +59,9 @@ int main() {
 		}
 
 		cout << "\nn=" << n << " fib(n)=" << fib(n) << '\n';
-
 	}
+
+	cout << "\nGoodbye!\n\n";
 
 	return 0;
 }
