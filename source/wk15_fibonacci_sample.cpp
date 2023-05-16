@@ -73,11 +73,11 @@ int main() {
 			cout << "n=" << n << " fib(n)=" << fib(n) << '\n';
 		}
 		catch (std::overflow_error& e) {
-			cout << "\nstack overflow on n=" << n << '\n';
+			cout << "\noverflow on n=" << n << '\n';
 			cout << e.what() << '\n';
 		}
 		catch (std::underflow_error& e) {
-			cout << "\nstack underflow on n=" << n << '\n';
+			cout << "\nunderflow on n=" << n << '\n';
 			cout << e.what() << '\n';
 		}
 		catch (std::runtime_error& e) {
