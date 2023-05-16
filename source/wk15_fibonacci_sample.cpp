@@ -88,5 +88,9 @@ size_t fib(size_t n) {
 	// is this efficient code?
 	//return fib(n - 1) + fib(n - 2);
 
+	if (g::aFib[n] != 0) {
+		return g::aFib[n];
+	}
+
 	return (g::aFib[n] = fib(n - 1) + fib(n - 2));
 }
