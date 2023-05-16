@@ -9,6 +9,7 @@
 // Author: https://www.geeksforgeeks.org/c-program-for-n-th-fibonacci-number/
 //------------------------------------------------------------------------------
 #include <iostream>
+#include <array>
 
 //------------------------------------------------------------------------------
 // using symbols
@@ -16,16 +17,25 @@
 using std::cin;
 using std::cout;
 using std::string;
+using std::array;
 
 //------------------------------------------------------------------------------
 // constants
 //------------------------------------------------------------------------------
-constexpr int FIBSEQ_LIMIT = 45;
+constexpr int FIBSEQ_LIMIT = 40;
+
+//------------------------------------------------------------------------------
+// globals
+//------------------------------------------------------------------------------
+// storage for pre-calculated Fibonacci numbers
+namespace g {
+	array<size_t, FIBSEQ_LIMIT + 1> aFib { 0 };
+}
 
 //------------------------------------------------------------------------------
 // local function prototypes
 //------------------------------------------------------------------------------
-int fib(int n);		// recursive function
+size_t fib(size_t n);		// recursive function
 
 //------------------------------------------------------------------------------
 // entry point
@@ -42,7 +52,7 @@ int main() {
 	cout << "\nFibonacci sequence\n";
 	cout << "1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...\n\n";
 
-	int n;
+	size_t n;
 	while (true) {
 
 		// limit sequence number to prevent stack overflow
@@ -70,12 +80,13 @@ int main() {
 // recursive Fibonacci number calculator
 // given int n, return nth Fibonacci number
 //------------------------------------------------------------------------------
-int fib(int n) {
+size_t fib(size_t n) {
 
 	if (n <= 1)
 		return n;
 
 	// is this efficient code?
-	return fib(n - 1) + fib(n - 2);
-}
+	//return fib(n - 1) + fib(n - 2);
 
+	return (g::aFib[n] = fib(n - 1) + fib(n - 2));
+}
