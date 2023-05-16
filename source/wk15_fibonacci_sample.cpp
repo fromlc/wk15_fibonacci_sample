@@ -18,6 +18,11 @@ using std::cout;
 using std::string;
 
 //------------------------------------------------------------------------------
+// constants
+//------------------------------------------------------------------------------
+constexpr int FIBSEQ_LIMIT = 45;
+
+//------------------------------------------------------------------------------
 // local function prototypes
 //------------------------------------------------------------------------------
 int fib(int n);		// recursive function
@@ -41,13 +46,14 @@ int main() {
 	while (true) {
 
 		// limit sequence number to prevent stack overflow
-		cout << "Enter a Fibonacci sequence number <= 45 (0 quits): ";
+		cout << "Enter a Fibonacci sequence number <= "
+			<< FIBSEQ_LIMIT << " (0 quits) : ";
 		cin >> n;
 		if (!n) {
 			break;
 		}
 
-		if (n > 45) {
+		if (n > FIBSEQ_LIMIT) {
 			cout << "Too big\n";
 			continue;
 		}
